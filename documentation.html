@@ -26,9 +26,9 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="pure-container" data-effect="pure-effect-1">
+        <div class="pure-container" data-effect="pure-effect-reveal">
             <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"/>
-            <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left">+</label>
+            <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
 
             <nav class="pure-drawer" data-position="left">
                 <div class="row collapse">
@@ -72,9 +72,11 @@
 				<h3>Single Drawer</h3>	
 				<div class="code-wrap">
 <pre>
-<code class="language-markup">&lt;div class="pure-container" data-effect="pure-effect-1"&gt;
+<code class="language-markup">&lt;div class="pure-container" data-effect="pure-effect-slide"&gt;
     &lt;input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"&gt;
-    &lt;label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"&gt;+&lt;/label&gt; 
+    &lt;label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"&gt;
+        &lt;span class="pure-toggle-icon"&gt;&lt;/span&gt;
+    &lt;/label&gt; 
 
     &lt;div class="pure-drawer" data-position="left"&gt;
         Put your off canvas content here
@@ -98,9 +100,17 @@
     &lt;input type="checkbox" id="pure-toggle-right" class="pure-toggle" data-toggle="right"&gt;
     &lt;input type="checkbox" id="pure-toggle-top" class="pure-toggle" data-toggle="top"&gt;
     
-    &lt;label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"&gt;+&lt;/label&gt; 
-    &lt;label class="pure-toggle-label" for="pure-toggle-right" data-toggle-label="right"&gt;+&lt;/label&gt; 
-    &lt;label class="pure-toggle-label" for="pure-toggle-top" data-toggle-label="top"&gt;+&lt;/label&gt; 
+    &lt;label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"&gt;
+        &lt;span class="pure-toggle-icon"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+
+    &lt;label class="pure-toggle-label" for="pure-toggle-right" data-toggle-label="right"&gt;
+        &lt;span class="pure-toggle-icon"&gt;&lt;/span&gt;
+    &lt;/label&gt; 
+
+    &lt;label class="pure-toggle-label" for="pure-toggle-top" data-toggle-label="top"&gt;
+        &lt;span class="pure-toggle-icon"&gt;&lt;/span&gt;
+    &lt;/label&gt; 
 
     &lt;div class="pure-drawer" data-position="left"&gt;
         Put your off canvas content for the left drawer here
@@ -133,10 +143,11 @@
 					<h4>Container</h4>
 					<div class="code-wrap">
 <pre>
-<code class="language-markup">&lt;div class="pure-container" data-effect="pure-effect-1"&gt;</code>
+<code class="language-markup">&lt;div class="pure-container" data-effect="pure-effect-slide"&gt;</code>
 </pre>
 					</div>
-					<p><strong>data-effect:</strong> This is where you enter your desired effect. Ranges from 1-9.</p>
+					<p><strong>data-effect:</strong> This is where you enter your desired effect.</p> 
+					<p>Choose between: slide, reveal, slideAlong, reverseSlide, scaleDown, scaleUp, scaleRotate, fall, push, bounce, fade, flipX, flipY and zoom.</p>
 				</div>
 				
 				<div class="sub-section">
@@ -154,11 +165,14 @@
 					<div class="code-wrap">
 <pre>
 <code class="language-markup">&lt;input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"&gt;
-&lt;label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"&gt;+&lt;/label&gt;</code>
+&lt;label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"&gt;
+    &lt;span class="pure-toggle-icon"&gt;&lt;/span&gt;
+&lt;/label&gt;</code>
 </pre>
 					</div>
 					<p><strong>data-toggle:</strong>Used to target the the toggle in css. Must match the value of data-position.</p>
 					<p><strong>data-toggle-label:</strong>Used to target the the toggle label in css. Must match the value of data-toggle.</p>
+					<p><strong>pure-toggle-icon:</strong>This controlls the hamburger icon graphics and animation. If you want to use your own custom icon just remove this span</p>
 				</div>
 
 				<div class="sub-section">
@@ -179,43 +193,63 @@
 				<div class="code-wrap">
 <pre>
 <code class="language-scss">// Point $show-drawer to one of the variables in _pure-drawer-breakpoints.scss to control which breakpoints drawers should appear.
-//$show-drawer: $small-only; 
+// $show-drawer: $small-only; 
+
+/**************
+## Animation ##
+**************/
+
+// $pure-drawer-animation-duration-slide: 500ms;
+// $pure-drawer-animation-duration-reveal: 500ms;
+// $pure-drawer-animation-duration-slideAlong: 500ms;
+// $pure-drawer-animation-duration-reverseSlide: 500ms;
+// $pure-drawer-animation-duration-scaleDown: 500ms;
+// $pure-drawer-animation-duration-scaleUp: 500ms;
+// $pure-drawer-animation-duration-scaleRotate: 500ms;
+// $pure-drawer-animation-duration-fall: 500ms;
+// $pure-drawer-animation-duration-push: 500ms;
+// $pure-drawer-animation-duration-bounce: 1000ms;
+// $pure-drawer-animation-duration-fade: 1000ms;
+// $pure-drawer-animation-duration-flipX: 1000ms !default;
+// $pure-drawer-animation-duration-flipY: 1000ms !default;
+// $pure-drawer-animation-duration-zoom: 1000ms !default;
+
 
 /************
 ## Toggler ##
 ************/
 
-$toggler-color: lighten(#374c5d, 20%);
-$toggler-checked-color: #1fc08e;
-$toggler-focus-color: #1fc08e;
+// $toggler-color: lighten(#374c5d, 20%);
+// $toggler-checked-color: #1fc08e;
+// $toggler-focus-color: #1fc08e;
 
 /***********
 ## Drawer ##
 ***********/
 
-$drawer-bgcolor: #00ab66;
+// $drawer-bgcolor: #374c5d;
 
 // For 'left' and 'right' positioned drawers.
-$drawer-width-small: 100%;
-$drawer-width-medium: 300px;
-$drawer-width-large: 300px;
+// $drawer-width-small: 100%;
+// $drawer-width-medium: 300px;
+// $drawer-width-large: 300px;
 
 // For 'top' positioned drawers.
-$drawer-height-small: 100%;
-$drawer-height-medium: 100%;
-$drawer-height-large: 100px;
+// $drawer-height-small: 100%;
+// $drawer-height-medium: 100%;
+// $drawer-height-large: 100px;
 
 /***********
 ## Pusher ##
 ***********/
 
-$pusher-bgcolor: #fff;
+// $pusher-bgcolor: #fff;
 
 /*******************
 ## Pusher Overlay ##
 *******************/
 
-$overlay-bgcolor: rgba(0,0,0,0.4);</code>
+// $overlay-bgcolor: rgba(0,0,0,0.4);</code>
 </pre>			
 				</div>
 				<h3 class="doc-title">Breakpoints</h3>
