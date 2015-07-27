@@ -50,7 +50,19 @@ gulp.task('dist:css', function () {
     }))
     .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('dist/css'))
-    //.pipe(size({ title: 'dist:css' }))
+    .pipe(size({ title: 'dist:css' }))
+});
+
+gulp.task('build:css', function () {
+    return gulp.src('src/scss/app.scss')
+    .pipe(sass({
+        errLogToConsole: true,
+        outputStyle: 'expanded',
+        precision: 5,
+    }))
+    .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe(gulp.dest('src/css'))
+    .pipe(size({ title: 'src:css' }))
 });
 
 gulp.task('copy:scss', function() {
@@ -59,6 +71,7 @@ gulp.task('copy:scss', function() {
 });
 
 gulp.task('dist', ['dist:css', 'copy:scss']);
+gulp.task('build', ['build:css']);
 
 /**
  * Minify
